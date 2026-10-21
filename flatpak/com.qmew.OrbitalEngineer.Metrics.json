@@ -1,0 +1,45 @@
+{
+  "app-id": "com.qmew.OrbitalEngineer.Metrics",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "49",
+  "sdk": "org.gnome.Sdk",
+  "command": "orbital-engineer-metrics",
+  "finish-args": [
+    "--socket=wayland",
+    "--socket=fallback-x11",
+    "--share=ipc",
+    "--device=dri",
+    "--filesystem=xdg-run/orbital-engineer:create"
+  ],
+  "modules": [
+    "python3-deps/python3-deps.json",
+    {
+      "name": "metrics-monitor",
+      "buildsystem": "simple",
+      "build-commands": [
+        "pip3 install --no-index --no-deps --no-build-isolation --prefix=/app .",
+        "install -Dm644 flatpak/data/com.qmew.OrbitalEngineer.Metrics.desktop /app/share/applications/com.qmew.OrbitalEngineer.Metrics.desktop",
+        "install -Dm644 flatpak/data/com.qmew.OrbitalEngineer.Metrics.metainfo.xml /app/share/metainfo/com.qmew.OrbitalEngineer.Metrics.metainfo.xml",
+        "install -Dm644 flatpak/data/com.qmew.OrbitalEngineer.Metrics.svg /app/share/icons/hicolor/scalable/apps/com.qmew.OrbitalEngineer.Metrics.svg"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "..",
+          "skip": [
+            ".git",
+            ".venv",
+            "build",
+            "dist",
+            "__pycache__",
+            ".pytest_cache",
+            "flatpak/build",
+            "flatpak/repo",
+            "flatpak/.flatpak-builder",
+            "flatpak/python3-deps/wheels"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Orbital Engineer Metrics
+Comment=Monitor live simulation metrics
+Exec=orbital-engineer-metrics
+Icon=com.qmew.OrbitalEngineer.Metrics
+Terminal=false
+Categories=Science;
+StartupNotify=true

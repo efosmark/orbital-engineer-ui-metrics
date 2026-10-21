@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.qmew.OrbitalEngineer.Metrics</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Orbital Engineer Metrics</name>
+  <summary>Monitor live simulation performance and energy</summary>
+  <description>
+    <p>Display live performance and simulation metrics from Orbital Engineer in a standalone GTK application, with configurable graph visibility and simulation-time history windows.</p>
+    <p>Follow CPU and GPU utilization, temperature, simulation steps, energy, virial ratio, and per-sample timings. Choose visible graphs, pause updates, and clear the history.</p>
+  </description>
+  <launchable type="desktop-id">com.qmew.OrbitalEngineer.Metrics.desktop</launchable>
+  <developer id="com.qmew"><name>Orbital Engineer contributors</name></developer>
+  <url type="homepage">https://github.com/efosmark/orbital-engineer-ui-metrics</url>
+  <url type="bugtracker">https://github.com/efosmark/orbital-engineer-ui-metrics/issues</url>
+  <provides><binary>orbital-engineer-metrics</binary></provides>
+  <content_rating type="oars-1.1"/>
+  <releases><release version="0.1.0" date="2026-10-20"/></releases>
+</component>

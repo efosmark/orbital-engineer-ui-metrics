@@ -1,0 +1,5 @@
+# PyGObject and Cairo come from the GNOME runtime. Include build tooling for
+# installing the application from source with --no-build-isolation, offline.
+matplotlib>=3.10
+setuptools>=68
+wheel

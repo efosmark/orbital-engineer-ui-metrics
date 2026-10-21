@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orbital-engineer-ui-metrics"
+version = "0.1.0"
+description = "GTK 4 monitor for Orbital Engineer simulation metrics"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["matplotlib>=3.10", "PyGObject>=3.52.3", "pycairo>=1.28.0"]
+
+[project.optional-dependencies]
+dev = ["build>=1.2", "pytest>=8", "pygobject-stubs>=2.13.0"]
+
+[project.urls]
+Repository = "https://github.com/efosmark/orbital-engineer-ui-metrics"
+Issues = "https://github.com/efosmark/orbital-engineer-ui-metrics/issues"
+
+[project.gui-scripts]
+orbital-engineer-metrics = "ui_metrics.cli:main"
+
+[project.scripts]
+orbital-engineer-metrics-watch = "ui_metrics.cli:watch_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ui_metrics*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

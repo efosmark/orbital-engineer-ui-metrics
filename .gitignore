@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Standalone app build outputs
+/flatpak/build/
+/flatpak/repo/
+/flatpak/.flatpak-builder/
+/flatpak/python3-deps/wheels/
+/flatpak/python3-deps/wheels.tmp/
+*.flatpak

@@ -1,6 +1,7 @@
 # Orbital Engineer Metrics
 
-A standalone GTK 4 application for live Orbital Engineer simulation metrics.
+A standalone GTK 4 application for live
+[Orbital Engineer](https://github.com/efosmark/orbital-engineer) simulation metrics.
 It receives JSON over a Unix datagram socket; it does not import or install the
 Orbital Engineer engine, OpenCL, or its GUI.
 

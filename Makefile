@@ -45,7 +45,7 @@ flatpak-check:
 flatpak-build: flatpak-check vendor-wheels
 	flatpak-builder --force-clean --state-dir=$(STATE_DIR) --repo=flatpak/repo $(BUILD_DIR) $(MANIFEST)
 flatpak-install: flatpak-build
-	flatpak-builder --user --install --finish-only --state-dir=$(STATE_DIR) $(BUILD_DIR) $(MANIFEST)
+	flatpak-builder --user --install --export-only --state-dir=$(STATE_DIR) --repo=flatpak/repo $(BUILD_DIR) $(MANIFEST)
 flatpak-run:
 	flatpak run $(APP_ID) $(ARGS)
 flatpak-bundle: flatpak-build

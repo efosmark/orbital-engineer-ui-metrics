@@ -8,7 +8,9 @@ def test_native_and_flatpak_defaults(monkeypatch):
     assert str(config.default_socket_path()) == '/tmp/kernel-metrics.sock'
     monkeypatch.setenv('FLATPAK_ID', config.APP_ID)
     monkeypatch.setenv('XDG_RUNTIME_DIR', '/run/user/1000')
-    assert str(config.default_socket_path()) == '/run/user/1000/orbital-engineer/metrics.sock'
+    assert str(config.default_socket_path()) == '/tmp/kernel-metrics.sock'
+    monkeypatch.delenv('XDG_RUNTIME_DIR', raising=False)
+    assert str(config.default_socket_path()) == '/tmp/kernel-metrics.sock'
     monkeypatch.setenv('OE_METRICS_SOCKET', '/tmp/custom.sock')
     assert str(config.default_socket_path()) == '/tmp/custom.sock'
 

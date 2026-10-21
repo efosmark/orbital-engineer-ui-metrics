@@ -39,7 +39,7 @@ is observed. History lengths are **simulation seconds**, configurable in
 
 ## Connecting a producer
 
-Native launches default to `/tmp/kernel-metrics.sock`, preserving the original
+Native and Flatpak launches default to `/tmp/kernel-metrics.sock`, preserving the original
 producer's default. Override this with `--socket PATH` or `OE_METRICS_SOCKET`.
 The receiver creates and owns the socket; start it before the producer. Only one
 receiver can own an endpoint. The terminal watcher and GUI are alternative
@@ -100,28 +100,22 @@ not assign a new license to your code.
 
 ### Flatpak socket sharing
 
-Flatpak has a private `/tmp`: a host producer writing `/tmp/kernel-metrics.sock`
-cannot reach that path inside the app. The Flatpak defaults instead to:
+The Flatpak manifest explicitly shares the host's `/tmp` directory. Both native
+and Flatpak launches default to `/tmp/kernel-metrics.sock`, so a fresh install
+works with a native producer without per-user overrides.
 
-```text
-$XDG_RUNTIME_DIR/orbital-engineer/metrics.sock
-```
+The filesystem permission exposes the entire host `/tmp` directory to the app.
+No network permission or home-directory access is required. A sandboxed producer
+must also have host `/tmp` access to reach the same socket.
 
-The manifest grants access only to that shared runtime subdirectory. **Configure
-the producer's `METRIC_SOCKET_PATH` to this same absolute path.** Setting
-`OE_METRICS_SOCKET` on the monitor does not automatically configure the producer.
-For a sandboxed producer, grant it `--filesystem=xdg-run/orbital-engineer:create`
-as well. No network permission or home-directory access is required.
+`--socket PATH` and `OE_METRICS_SOCKET` still override the default. Both applications
+must use the same host-visible path. Existing per-user overrides remain effective.
 
 To test against the Flatpak receiver from the host:
 
 ```sh
-python3 examples/send_metrics.py --socket "$XDG_RUNTIME_DIR/orbital-engineer/metrics.sock"
+python3 examples/send_metrics.py
 ```
-
-See the [Flatpak sandbox permissions documentation](https://docs.flatpak.org/en/latest/sandbox-permissions.html)
-for runtime-directory sharing, and [Flatpak's Python packaging guide](https://docs.flatpak.org/en/latest/python.html)
-for dependency bundling.
 
 ## Repository layout
 

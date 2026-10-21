@@ -5,16 +5,11 @@ APP_ID = "com.qmew.OrbitalEngineer.Metrics"
 
 WINDOW_TITLE = "Metrics Monitor"
 
-# Preserve the producer's native default. Flatpak uses a shared runtime directory.
+# Native and Flatpak installations share the producer's default socket path.
 def default_socket_path():
     override = os.environ.get("OE_METRICS_SOCKET")
     if override:
         return Path(override).expanduser()
-    if os.environ.get("FLATPAK_ID"):
-        runtime = os.environ.get("XDG_RUNTIME_DIR")
-        if not runtime:
-            raise RuntimeError("XDG_RUNTIME_DIR is required in Flatpak")
-        return Path(runtime) / "orbital-engineer" / "metrics.sock"
     return Path("/tmp/kernel-metrics.sock")
 
 WINDOW_DEFAULT_SIZE = (1200, 1000)

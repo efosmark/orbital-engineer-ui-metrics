@@ -15,6 +15,6 @@ assert f"Icon={app_id}" in desktop
 assert (root / f"flatpak/data/{app_id}.svg").is_file()
 project = tomllib.loads((root / "pyproject.toml").read_text())["project"]
 assert manifest["command"] in project["gui-scripts"]
-assert "--filesystem=xdg-run/orbital-engineer:create" in manifest["finish-args"]
+assert "--filesystem=/tmp" in manifest["finish-args"]
 assert "--share=network" not in manifest["finish-args"]
 print("Flatpak metadata and entry points are consistent")
